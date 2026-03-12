@@ -1,0 +1,17 @@
+#rootPane {
+    -fx-padding: 1em;
+}
+
+#contentPane {
+    -fx-hgap: 0.5em;
+    -fx-vgap: 0.5em;
+}
+
+#buttonPane {
+    -fx-spacing: 0.5em;
+}
+
+#statusBar {
+    -fx-padding: 1em 0 0 0;
+    -fx-spacing: 0.5em;
+}

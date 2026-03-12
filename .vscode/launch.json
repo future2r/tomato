@@ -1,0 +1,40 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Tomato",
+            "type": "java",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/gui",
+            "projectName": "gui",
+            "mainClass": "tomato.gui/tomato.gui.TomatoApplication",
+            "vmArgs": [
+                "--enable-native-access=javafx.graphics"
+            ]
+        },
+        {
+            "name": "Tomato (English)",
+            "type": "java",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/gui",
+            "projectName": "gui",
+            "mainClass": "tomato.gui/tomato.gui.TomatoApplication",
+            "vmArgs": [
+                "-Duser.language=en",
+                "--enable-native-access=javafx.graphics"
+            ]
+        },
+        {
+            "name": "Tomato (German)",
+            "type": "java",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/gui",
+            "projectName": "gui",
+            "mainClass": "tomato.gui/tomato.gui.TomatoApplication",
+            "vmArgs": [
+                "-Duser.language=de",
+                "--enable-native-access=javafx.graphics"
+            ]
+        }
+    ]
+}

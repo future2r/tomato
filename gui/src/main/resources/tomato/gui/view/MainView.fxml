@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import tomato.gui.view.MainView?>
+<?import tomato.gui.view.MainViewModel?>
+
+<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+    fx:id="rootPane" fx:controller="tomato.gui.view.MainViewController"
+    prefWidth="600" prefHeight="500">
+
+    <stylesheets>
+        <URL value="@MainView.css" />
+    </stylesheets>
+
+    <fx:define>
+        <MainViewModel fx:id="viewModel" />
+    </fx:define>
+
+    <center>
+
+        <GridPane fx:id="contentPane">
+
+            <rowConstraints>
+                <RowConstraints vgrow="never" />
+                <RowConstraints vgrow="never" />
+                <RowConstraints vgrow="never" />
+                <RowConstraints vgrow="always" />
+            </rowConstraints>
+            <columnConstraints>
+                <ColumnConstraints hgrow="always" />
+                <ColumnConstraints hgrow="never" />
+            </columnConstraints>
+
+            <TextField fx:id="varietyNameToAddTextField" promptText="%main.variety.prompt.add"
+                GridPane.rowIndex="1" />
+            <Label text="%main.variety.label.new" mnemonicParsing="true"
+                labelFor="$varietyNameToAddTextField"
+                minWidth="-Infinity" GridPane.rowIndex="0" />
+
+            <Button text="%main.variety.button.add" defaultButton="true"
+                disable="${!viewModel.canAdd}" onAction="#add"
+                minWidth="-Infinity" maxWidth="Infinity"
+                GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+            <TableView fx:id="varietyTableView" items="${viewModel.varieties}"
+                onKeyPressed="#varietyTableViewKeyPressed"
+                GridPane.rowIndex="3">
+                <columns>
+                    <TableColumn fx:id="nameTableColumn" text="%main.varieties.table.column.name"
+                        prefWidth="220">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="name" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="createdAtTableColumn"
+                        text="%main.varieties.table.column.createdAt" prefWidth="220">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="createdAt" />
+                        </cellValueFactory>
+                        <cellFactory>
+                            <MainView fx:factory="createLocalDateTimeCellFactory" />
+                        </cellFactory>
+                    </TableColumn>
+                </columns>
+                <placeholder>
+                    <Label text="%main.varieties.table.placeholder.empty" />
+                </placeholder>
+            </TableView>
+            <Label text="%main.varieties.label.table" mnemonicParsing="true"
+                labelFor="$varietyTableView"
+                minWidth="-Infinity" GridPane.rowIndex="2" />
+
+            <VBox fx:id="buttonPane" GridPane.rowIndex="3" GridPane.columnIndex="1">
+                <Button text="%main.varieties.button.remove"
+                    disable="${!viewModel.canRemove}" onAction="#remove"
+                    minWidth="-Infinity" maxWidth="Infinity" />
+                <Button text="%main.varieties.button.removeAll"
+                    disable="${!viewModel.canRemoveAll}" onAction="#removeAll"
+                    minWidth="-Infinity" maxWidth="Infinity" />
+            </VBox>
+
+        </GridPane>
+
+    </center>
+
+    <bottom>
+
+        <HBox fx:id="statusBar">
+            <Label text="%main.status.operatingSystem.label" />
+            <Label text="${viewModel.operatingSystem}" />
+            <Separator orientation="vertical" />
+            <Label text="%main.status.runtime.label" />
+            <Label text="${viewModel.runtime}" />
+        </HBox>
+
+    </bottom>
+
+</BorderPane>
