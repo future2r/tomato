@@ -9,8 +9,10 @@ This is a template project for the development of a desktop application:
 
 It is the companion project of
 
-* https://github.com/future2r/potato
+* https://github.com/future2r/cioccolato
 * https://github.com/future2r/gelato
+* https://github.com/future2r/macchiato
+* https://github.com/future2r/potato
 
 ## Prerequisites
 
@@ -83,6 +85,8 @@ The project is organized as a multi-module Maven project:
     * `src/main/resources/.../view/` - FXML layouts and CSS stylesheets
     * `src/test/` - Unit tests (JUnit)
 * `src/design/` - Design assets (ICO and PNG in various sizes)
+
+The view-model class is named `MainViewModel` and backs a `MainView`. The other tutorial projects use `MainViewModel` (macchiato), `MainWindowViewModel` (potato, cioccolato) or `MainPageViewModel` (gelato), following each framework's root view type.
 
 ## Project Setup
 
